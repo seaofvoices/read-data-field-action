@@ -1,0 +1,80 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Verify code style
+        run: npm run style-check
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Bundle action
+        run: npm run build
+
+      - name: Verify build
+        uses: tj-actions/verify-changed-files@v20
+        with:
+          files: |
+            dist/index.js
+            dist/index.js.map
+
+  end-to-end-test:
+    name: Run end-to-end tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Extract data from YAML file
+        id: extract_yml
+        uses: ./
+        with:
+          file: ./action.yml
+          field: runs.main
+
+      - name: Assert output
+        uses: prompt/actions-assert@v4
+        with:
+          assertion: npm://@assertions/is-equal:latest
+          actual: ${{ steps.extract_yml.outputs.result }}
+          expected: dist/index.js
+
+      - name: Extract data from JSON file
+        id: extract_json
+        uses: ./
+        with:
+          file: ./package.json
+          field: prettier.trailingComma
+
+      - name: Assert output
+        uses: prompt/actions-assert@v4
+        with:
+          assertion: npm://@assertions/is-equal:latest
+          actual: ${{ steps.extract_json.outputs.result }}
+          expected: es5

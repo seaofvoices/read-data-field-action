@@ -1,0 +1,25 @@
+name: 'Read Data Field'
+
+description: 'Read a specified property from a data file. Supports json, jsonc, json5, toml and yaml files.'
+
+author: 'Sea of Voices'
+
+branding:
+  color: 'orange'
+  icon: 'file-text'
+
+inputs:
+  file:
+    description: 'The data file to read'
+  field:
+    description: 'The dot separated field path to extract (like "scripts.build")'
+
+outputs:
+  result:
+    description: 'The data extracted using the specified field'
+  result_json:
+    description: 'The same extracted data but encoded as JSON'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
