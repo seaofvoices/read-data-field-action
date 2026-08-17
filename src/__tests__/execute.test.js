@@ -229,7 +229,11 @@ settings:
               runs:
             "... is not valid JSON
 
-         |> jsonc failed with: SyntaxError: Unexpected token r
+         |> jsonc failed with: SyntaxError: Unexpected token 'r', "
+              runs:
+                  using: 'node24'
+                main: 'dist/index.js'
+                " is not valid JSON
 
          |> json5 failed with: SyntaxError: JSON5: invalid character 'r' at 2:7
 
@@ -255,7 +259,11 @@ settings:
               runs:
             "... is not valid JSON
         attempting to parse content with jsonc parser...
-        failed to parse content with jsonc: SyntaxError: Unexpected token r
+        failed to parse content with jsonc: SyntaxError: Unexpected token 'r', "
+              runs:
+                  using: 'node24'
+                main: 'dist/index.js'
+                " is not valid JSON
         attempting to parse content with json5 parser...
         failed to parse content with json5: SyntaxError: JSON5: invalid character 'r' at 2:7
         attempting to parse content with toml parser...
@@ -296,7 +304,11 @@ settings:
 
          |> json5 failed with: SyntaxError: JSON5: invalid character 'r' at 2:7
 
-         |> jsonc failed with: SyntaxError: Unexpected token r
+         |> jsonc failed with: SyntaxError: Unexpected token 'r', "
+              runs:
+                  using: 'node24'
+                main: 'dist/index.js'
+                " is not valid JSON
 
          |> yaml failed with: YAMLParseError: All mapping items must start at the same column at line 4, column 1:
 
@@ -322,7 +334,11 @@ settings:
         attempting to parse content with json5 parser...
         failed to parse content with json5: SyntaxError: JSON5: invalid character 'r' at 2:7
         attempting to parse content with jsonc parser...
-        failed to parse content with jsonc: SyntaxError: Unexpected token r
+        failed to parse content with jsonc: SyntaxError: Unexpected token 'r', "
+              runs:
+                  using: 'node24'
+                main: 'dist/index.js'
+                " is not valid JSON
         attempting to parse content with yaml parser...
         failed to parse content with yaml: YAMLParseError: All mapping items must start at the same column at line 4, column 1:
 
@@ -354,7 +370,11 @@ settings:
 
          |> json5 failed with: SyntaxError: JSON5: invalid character 'r' at 2:7
 
-         |> jsonc failed with: SyntaxError: Unexpected token r
+         |> jsonc failed with: SyntaxError: Unexpected token 'r', "
+              runs:
+                  using: 'node24'
+                main: 'dist/index.js'
+                " is not valid JSON
 
          |> toml failed with: Error: Invalid TOML document: incomplete key-value: cannot find end of key
 

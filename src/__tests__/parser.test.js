@@ -320,7 +320,11 @@ test('errors when no parser can read the content', () => {
 
        |> json5 failed with: SyntaxError: JSON5: invalid character 'r' at 2:1
 
-       |> jsonc failed with: SyntaxError: Unexpected token r
+       |> jsonc failed with: SyntaxError: Unexpected token 'r', "
+      runs:
+          using: 'node24'
+        main: 'dist/index.js'
+        " is not valid JSON
 
        |> toml failed with: Error: Invalid TOML document: incomplete key-value: cannot find end of key
 
@@ -349,7 +353,11 @@ test('generates debug output when no parser can read the content', () => {
     attempting to parse content with json5 parser...
     failed to parse content with json5: SyntaxError: JSON5: invalid character 'r' at 2:1
     attempting to parse content with jsonc parser...
-    failed to parse content with jsonc: SyntaxError: Unexpected token r
+    failed to parse content with jsonc: SyntaxError: Unexpected token 'r', "
+    runs:
+        using: 'node24'
+      main: 'dist/index.js'
+      " is not valid JSON
     attempting to parse content with toml parser...
     failed to parse content with toml: Error: Invalid TOML document: incomplete key-value: cannot find end of key
 
