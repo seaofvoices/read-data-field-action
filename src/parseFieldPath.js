@@ -70,7 +70,8 @@ export function parseFieldPath(fieldPath) {
         indexNumber = parseInt(indexChunk)
       } catch (err) {
         throw new Error(
-          `Invalid numerical index at ${index + 1} (${JSON.stringify(indexChunk)}): ${err}`
+          `Invalid numerical index at ${index + 1} (${JSON.stringify(indexChunk)}): ${err}`,
+          { cause: err }
         )
       }
 
@@ -93,7 +94,8 @@ export function parseFieldPath(fieldPath) {
         chunks.push(key)
       } catch (err) {
         throw new Error(
-          `Invalid key at ${index + 1}:${nextIndex} (${JSON.stringify(key)}): ${err}`
+          `Invalid key at ${index + 1}:${nextIndex} (${JSON.stringify(key)}): ${err}`,
+          { cause: err }
         )
       }
 
