@@ -14,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 'latest'
           cache: 'npm'
@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
       - name: Extract data from YAML file
         id: extract_yml
@@ -73,7 +73,7 @@ jobs:
           field: prettier.trailingComma
 
       - name: Assert output
-        uses: prompt/actions-assert@v4
+        uses: prompt/actions-assert@v5
         with:
           assertion: npm://@assertions/is-equal:latest
           actual: ${{ steps.extract_json.outputs.result }}
