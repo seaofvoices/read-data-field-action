@@ -12,7 +12,8 @@ function readPath(keys, data) {
       nextValue = value[key]
     } catch (err) {
       throw new Error(
-        `unable to read key ${JSON.stringify(key)} on object ${JSON.stringify(value)}: ${err}`
+        `unable to read key ${JSON.stringify(key)} on object ${JSON.stringify(value)}: ${err}`,
+        { cause: err }
       )
     }
 
